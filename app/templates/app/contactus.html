@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Contact Us - Healthcare Clinic{% endblock %}
+
+{% block bodytag %}
+    {% load static %}
+    <body background="{% static 'images/i6.jpg' %}" style="background-size: auto auto;">
+{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="jumbotron jumbotron-fluid" style="margin-left:5%;margin-right:5%;background:rgba(90, 89, 89, 0.6);color:white;">
+        <div class="container">
+            <h1>Address</h1>
+            <p class="lead">123 Healthcare Street, Medical District, City, State</p>
+            <button class="btn btn-info">Pin Code: 12345</button>
+
+            <br><br>
+
+            <h1>Email</h1>
+            <p class="lead">Email us in </p>
+            <button class="btn btn-info">HealthcareSystem@example.com</button>
+
+            <br><br>
+
+            <h1>Reception Contact Numbers</h1>
+            <p class="lead">24/7 Hotline Available</p>
+            <button class="btn btn-info">Contact Numbers: 123-456-7890, 098-765-4321</button>
+        </div>
+    </div>
+{% endblock %}

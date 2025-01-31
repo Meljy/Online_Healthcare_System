@@ -1,0 +1,56 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        
+        <title>{% block title %}{% endblock %}</title>
+        <base>{% block style %}{% endblock %}</base>
+        
+        {% block script %}{% endblock %}
+    </head>
+    
+    {% block bodytag %}
+    <body background="{% static 'images/i6.jpg' %}" style="background-size: auto auto;">
+    {% endblock %}
+    {% include 'app/navbar.html' %}
+
+    {% if user.is_authenticated %}
+    <p>Hi {{ user.username }}</p>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Log out</button>
+    </form>
+    {% else %}
+    <center>
+    <p>You are not logged in</p>
+    </center>
+    {% endif %}
+   
+    <li class="dropdown-divider" style="margin-top:0px;margin-bottom:0px;border-color:black"></li>
+
+    {% block content %}
+    {% endblock %}
+
+    <div id="Footer">
+        <h6 style="text-align:center;color:black;background-color:#dddddd;margin: 0 auto;">
+            <hr class="my-4" style="margin: 0 auto;">
+            © 2025 Online Healthcare System
+            <br>
+            <br>
+        </h6>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+    </body>
+</html>

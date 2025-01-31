@@ -1,0 +1,58 @@
+{% extends 'app/base.html' %}
+{% load static%}
+{% block title %}Home - Healthcare Clinic{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselIndicators" data-slide-to="2"></li>
+        </ol>
+        
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <!-- d-block mx-auto'  -->
+                <img src="{% static 'images/logo.png' %}" class="d-block mx-auto" alt="Health Clinic">
+                
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 style="text-align:center;color:black;">Welcome To Our Healthcare System</h5>
+                    <p style="text-align:center;color:black;">Providing quality healthcare services</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Patient Services</h5>
+                    <p class="card-text">View and manage patient records</p>
+                    <a href="{% url 'patient' %}" class="btn btn-primary">Go to Patients</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">About Us</h5>
+                    <p class="card-text">Learn more about our services</p>
+                    <a href="{% url 'about' %}" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

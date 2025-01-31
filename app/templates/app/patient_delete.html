@@ -1,0 +1,23 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Delete Patient - Healthcare Clinic{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card" style="margin-left:5%;margin-right:5%;background:rgba(255,255,255,0.9);">
+        <div class="card-body text-center">
+            <h1 class="display-4">Delete Patient Record</h1>
+            <div class="dropdown-divider" style="margin-left:25%;margin-right:25%;border-color:black"></div>
+            
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <p class="lead">Are you sure you want to delete "{{ patient.first_name }} {{ patient.last_name }}"?</p>
+                <div class="mt-4">
+                    <input type="submit" value="Confirm Delete" class="btn btn-danger btn-lg">
+                    <a href="{% url 'patient' %}" class="btn btn-secondary btn-lg ml-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

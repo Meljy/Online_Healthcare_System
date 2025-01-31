@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Patient Details - Healthcare Clinic{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card text-center" style="margin-left:5%;margin-right:5%;">
+        <div class="card-header">
+            Patient Record
+        </div>
+        <div class="card-body">
+            <h1 class="card-title">{{ patient.first_name }} {{ patient.last_name }}</h1>
+            <div class="card-text lead">
+                <p>Email: {{ patient.email }}</p>
+                <p>Phone: {{ patient.phone_number }}</p>
+                <p>Date of Birth: {{ patient.date_of_birth }}</p>
+                <p>Address: {{ patient.address }}</p>
+                <p>Medical History: {{ patient.medical_history }}</p>
+            </div>
+            
+            <div class="mt-4">
+                <a href="{% url 'patient_update' patient.pk %}" class="btn btn-primary">Edit Patient</a>
+                <a href="{% url 'patient_delete' patient.pk %}" class="btn btn-danger">Delete Patient</a>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            Patient ID: {{ patient.pk }}
+        </div>
+    </div>
+</div>
+{% endblock %}

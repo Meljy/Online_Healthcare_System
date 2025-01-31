@@ -1,0 +1,60 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Emergency - Healthcare Clinic{% endblock %}
+
+{% block bodytag %}
+    {% load static %}
+    <body>
+{% endblock %}
+
+{% block content %}
+    <br>
+    <h1 style="text-align:center;color:red" class="display-4">
+        EMERGENCY
+        <li class="dropdown-divider" style="margin-left:25%;margin-right:25%;border-color:red"></li>
+        <p class="lead">
+            Select location or type in your location.
+            <br>
+            NO LOGIN REQUIRED
+        </p>
+    </h1>
+
+    {% if message %}
+        <div style="text-align:center;margin:0 auto;" class="alert alert-warning" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <hr>
+
+    <div class="container center_div" align="center" width="300px">
+        <form align="center" action="{% url 'emergency' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <select class="form-control" name="emergencyLocation">
+                    <option>Building A</option>
+                    <option>Building B</option>
+                    <option>Building C</option>
+                    <option>Main Campus</option>
+                    <option>Sports Complex</option>
+                    <!-- Add more locations as needed -->
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-warning btn-lg">CALL AMBULANCE</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="container center_div" align="center" width="300px">
+        <form align="center" action="{% url 'emergency' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input name="emergencyLocation" type="text" class="form-control" placeholder="Or type your location here">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-warning btn-lg">CALL AMBULANCE</button>
+        </form>
+    </div>
+{% endblock %}

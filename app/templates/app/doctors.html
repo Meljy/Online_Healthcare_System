@@ -1,0 +1,85 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Our Doctors - Healthcare Clinic{% endblock %}
+
+{% block bodytag %}
+    {% load static %}
+    <body background="{% static 'images/i6.jpg' %}" style="background-size: auto auto;">
+{% endblock %}
+
+{% block content %}
+    <br>
+    <h1 style="text-align:center;color:black;" class="display-4">
+        Available Doctors
+    </h1>
+
+    <li class="dropdown-divider" style="margin-left:25%;margin-right:25%;border-color:black"></li>
+    
+    <!-- Filter Section -->
+    <div class="container mt-4 mb-4">
+        <div class="card" style="background:rgba(255,255,255,0.9);">
+            <div class="card-body">
+                <form method="get" class="row g-3">
+                    <div class="col-md-4">
+                        <label for="id_specialization" class="form-label">Specialization</label>
+                        <select name="specialization" id="id_specialization" class="form-control">
+                            <option value="">All Specializations</option>
+                            {% for spec in form.specialization.field.choices %}
+                                {% if spec.0 %}
+                                    <option value="{{ spec.0 }}" {% if request.GET.specialization == spec.0 %}selected{% endif %}>
+                                        {{ spec.1 }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="id_search" class="form-label">Search</label>
+                        <input type="text" name="search" class="form-control" id="id_search" 
+                               placeholder="Search by name, specialization..." value="{{ request.GET.search }}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="id_sort" class="form-label">Sort By</label>
+                        <select name="sort" id="id_sort" class="form-control">
+                            <option value="">Default Sorting</option>
+                            {% for sort_option in form.sort.field.choices %}
+                                <option value="{{ sort_option.0 }}" {% if request.GET.sort == sort_option.0 %}selected{% endif %}>
+                                    {{ sort_option.1 }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-1 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% for doctor in doctors %}
+        <div class="row container" style="margin: 0 auto;">
+            <div class="col-sm-12">
+                <div class="card" style="background:rgba(0,0,0,0.8);color:white;">
+                    <div class="card-body">
+                        <h5 class="card-title">Dr. {{ doctor.name }}</h5>
+                        <li class="dropdown-divider"></li>
+                        <p class="card-text">
+                            <pre style="color:white">
+Address        : {{ doctor.address }}
+Email          : {{ doctor.email }}
+Specialization : {{ doctor.specialization }}
+                            </pre>
+                        </p>
+                        <a href="#" class="btn btn-primary">Contact Number: {{ doctor.contact_number }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    {% empty %}
+        <div class="alert alert-info text-center" style="background:rgba(255,255,255,0.9);">
+            No doctors found matching your criteria. Please try different filters.
+        </div>
+    {% endfor %}
+{% endblock %}
